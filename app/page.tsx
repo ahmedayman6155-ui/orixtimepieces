@@ -1,65 +1,92 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Home() {
+  const [email, setEmail] = useState("");
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="min-h-screen bg-black text-white">
+      {/* Hero */}
+      <section className="flex flex-col items-center justify-center text-center px-6 py-24">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-4xl md:text-6xl font-bold tracking-wide"
+        >
+          ORIX TIMEPIECES
+        </motion.h1>
+
+        <p className="mt-4 text-gray-400 max-w-xl">
+          Luxury watches curated for timeless elegance and precision.
+        </p>
+
+        <a href="https://wa.me/201031797953" target="_blank">
+          <button className="mt-6 bg-white text-black px-6 py-3 rounded-xl">
+            Contact on WhatsApp
+          </button>
+        </a>
+      </section>
+
+      {/* About */}
+      <section className="px-6 py-16 max-w-5xl mx-auto">
+        <h2 className="text-2xl font-semibold mb-4">About Us</h2>
+        <p className="text-gray-400 leading-relaxed">
+          ORIX Timepieces specializes in premium luxury watches sourced from
+          top global brands. We focus on authenticity, quality, and refined
+          style.
+        </p>
+      </section>
+
+      {/* Products */}
+      <section className="px-6 py-16 bg-neutral-950">
+        <h2 className="text-2xl font-semibold mb-8 text-center">
+          Featured Collection
+        </h2>
+
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {[1, 2, 3].map((item) => (
+            <div
+              key={item}
+              className="border border-gray-800 rounded-xl p-4"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              <div className="h-48 bg-gray-800 mb-4 rounded-lg"></div>
+              <h3 className="text-lg font-semibold">
+                Luxury Watch {item}
+              </h3>
+              <p className="text-gray-400 text-sm">
+                Premium design & high quality finish.
+              </p>
+            </div>
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Contact */}
+      <section className="px-6 py-20 max-w-3xl mx-auto text-center">
+        <h2 className="text-2xl font-semibold mb-4">Stay Updated</h2>
+        <p className="text-gray-400 mb-6">
+          Subscribe for new arrivals & offers
+        </p>
+
+        <div className="flex gap-2">
+          <input
+            className="flex-1 px-4 py-2 rounded text-black"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <button className="bg-white text-black px-4 py-2 rounded">
+            Join
+          </button>
         </div>
-      </main>
+      </section>
+
+      {/* Footer */}
+      <footer className="text-center text-gray-500 py-6 border-t border-gray-800">
+        © {new Date().getFullYear()} ORIX TIMEPIECES
+      </footer>
     </div>
   );
 }
